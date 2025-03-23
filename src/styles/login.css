@@ -1,0 +1,136 @@
+/* Main layout */
+.login-page {
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(to right, #2c34cb, #4ca1af);
+    color: white;
+  }
+  
+  /* Left section - Branding */
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  .left-section h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .left-section p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+  
+  /* Right section - Login Form */
+  .right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Login Container - Glassmorphism Effect */
+  .login-container {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+    backdrop-filter: blur(15px);
+  }
+  
+  .login-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  /* Input fields */
+  input {
+    width: 80%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  input:focus {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Login Button */
+  #Login {
+    width: 50%;
+    padding: 12px;
+    background-color: #2d80b8;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+  }
+  
+ #Login:hover {
+    background-color: #38528e;
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: #ff4c4c;
+    margin-top: 10px;
+  }
+  
+  /* Links */
+  .links {
+    margin-top: 20px;
+  }
+  
+  .links a {
+    display: block;
+    text-decoration: none;
+    color: rgb(3, 58, 124);
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+  
+  .links a:hover {
+    color: #0026ff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-page {
+      flex-direction: column;
+    }
+  
+    .left-section {
+      display: none;
+    }
+  
+    .right-section {
+      width: 100%;
+    }
+  }
+  
