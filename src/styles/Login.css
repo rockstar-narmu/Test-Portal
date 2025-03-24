@@ -1,0 +1,136 @@
+.loginPage {
+    height: 100vh;
+    background-color: #319CB5; 
+    display: flex;
+  }
+  
+  
+  .left-side, .right-side {
+    margin: 20px 40px;
+  }
+  
+  .left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+  }
+  
+  .welcome {
+    font-size: 50px;
+    font-weight: bold;
+    margin-left: 7%;
+  }
+  
+  .started {
+    font-size: 30px;
+    margin-left: 7%;
+    margin-top: 20px;
+  }
+  
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #CCF5FE; 
+    border-radius: 50px;
+    flex: 1;
+  }
+  
+  .login-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  .inputs-container input {
+    border: none;
+    background-color: #03181F;
+    padding: 20px 20px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .inputs-container input::placeholder {
+    font-size: 16px;
+    color: rgb(183, 176, 176);
+  }
+  
+  
+  .email-container, .password-container {
+    display: flex;
+    align-items: center;
+    background-color: #03181F;
+    margin: 20px;
+    padding: 5px 0 5px 20px;
+    border-radius: 10px;
+  }
+  
+  .forgot-password-container {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .forgot-password {
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .forgot-password:hover {
+    color: darkblue;
+  }
+  
+  
+  .submit-button-container button {
+    border: none;
+    background-color: #319CB5;
+    font-size: 18px;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+  
+  .submit-button-container button:hover {
+    background-color: #287a8f;
+  }
+  
+  .sign-up-container {
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+  .sign-up {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .sign-up:hover {
+    color: darkblue;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .loginPage {
+      flex-direction: column;
+    }
+  
+    .left-side {
+      display: none;
+    }
+  
+    .right-side {
+      width: 100%;
+      border-radius: 0;
+    }
+  }

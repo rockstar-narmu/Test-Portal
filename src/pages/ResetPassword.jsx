@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../styles/ResetPassword.css";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const Navigate=useNavigate();
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) return;
@@ -13,13 +15,16 @@ const ResetPassword = () => {
     setOtp(newOtp);
   };
 
+  const handleLoginRedirect = ()=>{
+    Navigate("/");
+  }
   return (
     <div className="reset-container">
       <div className="left-panel">
-        <h2>Reset password</h2>
+        <h2>Reset Password</h2>
       </div>
       <div className="right-panel">
-        <h3>New Password</h3>
+        <h3>Enter OTP & Set New Password</h3>
         <div className="otp-container">
           {otp.map((digit, index) => (
             <input
@@ -32,22 +37,24 @@ const ResetPassword = () => {
             />
           ))}
         </div>
+
         <input
           type="password"
-          placeholder="New password"
+          placeholder="New Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="input-field"
         />
         <input
           type="password"
-          placeholder="Confirm new password"
+          placeholder="Confirm New Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="input-field"
         />
+
         <div className="button-container">
-          <button className="btn primary">Continue</button>
+          <button className="btn primary" onClick={handleLoginRedirect}>Continue</button> 
           <button className="btn secondary">Cancel</button>
         </div>
       </div>

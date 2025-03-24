@@ -27,6 +27,7 @@ const QuestionForm = () => {
         <label>Topic:</label>
         <input
           type="text"
+          id="topics"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
@@ -34,6 +35,7 @@ const QuestionForm = () => {
         <label>Number of Questions:</label>
         <input
           type="number"
+          id="noofqns"
           value={numQuestions}
           onChange={(e) => setNumQuestions(e.target.value)}
         />
