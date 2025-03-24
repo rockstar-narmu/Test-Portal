@@ -1,13 +1,22 @@
 import React from "react";
-import ResetPassword from "./Components/ResetPassword"; // Ensure the correct file path
-import QuestionForm from "./Components/QuestionForm";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import SignUpPage from "./pages/SignUpPage";
+import ResetPassword from "./pages/ResetPassword"; 
+import QuestionForm from "./pages/QuestionForm";
+import LoginPage from "./pages/Login";
 
 function App() {
   return (
-    <div>
-      <ResetPassword />
-      <QuestionForm/>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/reset-password" element={<ResetPassword />} /> 
+        <Route path="/question-form" element={<QuestionForm />} /> 
+      </Routes>
+    </Router>
   );
 }
 
