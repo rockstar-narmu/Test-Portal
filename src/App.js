@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/Login";
 import UserDetails from "./pages/UserDetails";
 import ResetPassword from "./pages/ResetPassword";
+import QuestionForm from "./pages/QuestionForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/Signup" element={<SignUpPage/>}/>
         <Route path="/Userdetails" element={<UserDetails/>}/>
         <Route path="/Reset-password" element={<ResetPassword/>}/>
+        <Route path="/questionform" element={<QuestionForm/>}/>
       </Routes>
     </Router>
   );

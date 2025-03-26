@@ -1,14 +1,19 @@
 import React from 'react'
 import Header from '../Components/header';
 import "../styles/landingPage.css";
+import { useNavigate } from 'react-router-dom';
 
 export const LandingPage = () => {
+const Navigate=useNavigate();
+  const handleNavigatetoQuestion=()=>{
+    Navigate("/questionform");
+  }
   return (
     <div>
       < Header />
       <div className='landingPage'>
         <div className='take-test-container'>
-          <div className='take-test'>Take a Test</div>
+          <button className='take-test' onClick={handleNavigatetoQuestion}>Take a Test</button>
           <div className='plus-button'>+</div>
         </div>
 

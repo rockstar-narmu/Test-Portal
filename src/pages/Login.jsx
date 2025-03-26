@@ -1,64 +1,67 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/login.css";
 
 export const LoginPage = () => {
-  const navigate = useNavigate(); 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log("Logging in..."); 
-    navigate("/");
-  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError(""); 
 
-  const handleSignUpRedirect = () => {
-    console.log("Navigating to Sign Up"); 
-    navigate("/signup"); 
-  };
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", { email, password });
 
-  const handleForgotPassword = () => {
-    console.log("Navigating to Forgot Password"); 
-    navigate("/reset-password"); 
+      if (response.data.success) {
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        alert("Login successful!");
+        navigate("/landing"); 
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      setError("Login failed. Please try again.");
+    }
   };
 
   return (
     <div className="loginPage">
       <div className="left-side">
-        <div className="welcome">Welcome to our AI Test Portal</div>
+        <div className="welcome">Welcome to AI Test Portal</div>
         <div className="started">Let's get started!</div>
       </div>
 
       <div className="right-side">
         <div className="login-title">Log In</div>
 
-        <div className="inputs-container">
+        <form className="inputs-container" onSubmit={handleLogin}>
           <div className="email-container">
-            <div className="mail-icon">
-              <img src="/assets/icons/email.png" height={40} width={40} alt="email-icon" />
-            </div>
-            <input type="email" placeholder="Email Address" />
+            <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="password-container">
-            <div className="password-icon">
-              <img src="/assets/icons/locked.png" height={40} width={40} alt="password-icon" />
-            </div>
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-        </div>
 
-        {/* Forgot Password Link */}
-        <div className="forgot-password-container">
-          <span className="forgot-password" onClick={handleForgotPassword} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
-            Forgot Password?
-          </span>
-        </div>
+          {error && <p className="error-message">{error}</p>}
 
-        <div className="submit-button-container">
-          <button type="submit" onClick={handleLogin}>Log In</button>
-        </div>
+          <div className="forgot-password-container">
+            <span className="forgot-password" onClick={() => navigate("/reset-password")} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
+              Forgot Password?
+            </span>
+          </div>
+
+          <div className="submit-button-container">
+            <button type="submit">Log In</button>
+          </div>
+        </form>
 
         <div className="sign-up-container">
           Don't have an account?{" "}
-          <span className="sign-up" onClick={handleSignUpRedirect} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
+          <span className="sign-up" onClick={() => navigate("/signup")} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
             Sign Up
           </span>
         </div>

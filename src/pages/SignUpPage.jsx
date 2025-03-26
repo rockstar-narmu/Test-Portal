@@ -1,56 +1,66 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/signUpPage.css";
 
 export const SignUpPage = () => {
-  const navigate = useNavigate(); // Hook to navigate to another page
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSignUp = () => {
-    // Perform validation here if needed
-    navigate("/landing"); // Redirect to Landing Page
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/signup", { 
+        email, 
+        password 
+      });
+      alert(response.data.message);
+      navigate("/userdetails"); // Redirect after signup
+    } catch (error) {
+      alert("Signup failed. Try again.");
+    }
   };
 
   return (
-    <div className='signUpPage'>
-      <div className='left-side'>
-        <div className='welcome'>Welcome to our AI Test Portal</div>
-        <div className='started'>Let's get started!</div>
+    <div className="signUpPage">
+      <div className="left-side">
+        <div className="welcome">Welcome to Test Portal</div>
+        <div className="started">Let's get started!</div>
       </div>
 
-      <div className='right-side'>
-        <div className='sign-up-title'>Sign Up</div>
+      <div className="right-side">
+        <div className="sign-up-title">Sign Up</div>
 
-        <div className='inputs-container'>
-          <div className='email-container'>
-            <div className='mail-icon'>
-              <img src="/assets/icons/email.png" height={40} width={40} alt='email-icon' />
-            </div>
-            <input type='email' placeholder='Email Address' />
+        <form className="inputs-container" onSubmit={handleSignUp}>
+          <div className="email-container">
+            <input type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
-          <div className='password-container'>
-            <div className='password-icon'>
-              <img src="/assets/icons/locked.png" height={40} width={40} alt='password-icon' />
-            </div>
-            <input type='password' placeholder='Password' />
+          <div className="password-container">
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          <div className='confirm-password-container'>
-            <div className='confirm-password-icon'>
-              <img src="/assets/icons/password.png" height={40} width={40} alt='confirm-password-icon' />
-            </div>
-            <input type='password' placeholder='Confirm Password' />
+          <div className="confirm-password-container">
+            <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
           </div>
-        </div>
 
-        <div className='submit-button-container'>
-          <button type="submit" onClick={handleSignUp}>Sign Up</button>
-        </div>
+          <div className="submit-button-container">
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
 
-        <div className='log-in-container'>
-          Already have an account? <span className='log-in'>Log in</span>
+        <div className="log-in-container">
+          Already have an account? <Link to="/" className="log-in">Login</Link>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignUpPage;
